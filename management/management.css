@@ -1,0 +1,1126 @@
+@import url("./management-base.css");
+
+.preview-filter-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.stock-filter-toolbar {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.stock-filter-toolbar .preview-search {
+    flex: 1 1 220px;
+}
+
+.stock-filter-toolbar select {
+    flex: 1 1 150px;
+    max-width: 230px;
+}
+
+.stock-filter-toolbar #stock-reset-filter[hidden] {
+    display: none;
+}
+
+@media (max-width: 680px) {
+    .stock-filter-toolbar select,
+    .stock-filter-toolbar #stock-reset-filter:not([hidden]) {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+/* =========================================================
+   ACCEPTANCE — DASHBOARD READABILITY
+   Fokus pada hierarchy teks tanpa menambah visual yang ramai.
+========================================================= */
+
+.dashboard-toolbar {
+    padding: 16px 18px;
+}
+
+.dashboard-eyebrow {
+    font-size: 0.64rem;
+    font-weight: 850;
+}
+
+.dashboard-toolbar p {
+    font-size: 0.92rem;
+    font-weight: 800;
+}
+
+.dashboard-card {
+    min-height: 112px;
+    padding: 17px 16px;
+    gap: 13px;
+}
+
+.dashboard-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    font-size: 1rem;
+}
+
+.dashboard-card span {
+    color: var(--text-secondary);
+    font-size: 0.76rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.dashboard-card strong {
+    color: var(--text-main);
+    font-size: 1.28rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+}
+
+.dashboard-card small {
+    font-size: 0.59rem;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.dashboard-section-heading h2,
+.dashboard-review-heading h2 {
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.dashboard-section-heading p,
+.dashboard-review-heading p {
+    font-size: 0.64rem;
+}
+
+.dashboard-review-count {
+    font-size: 0.62rem;
+}
+
+@media (max-width: 1180px) {
+    .dashboard-card {
+        min-height: 104px;
+    }
+
+    .dashboard-card strong {
+        font-size: 1.18rem;
+    }
+}
+
+@media (max-width: 720px) {
+    .dashboard-card {
+        min-height: 96px;
+        padding: 14px;
+    }
+
+    .dashboard-card-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .dashboard-card span {
+        font-size: 0.72rem;
+    }
+
+    .dashboard-card strong {
+        font-size: 1.12rem;
+    }
+}
+
+/* =========================================================
+   MANUAL INVOICE GRID & AUTOCOMPLETE STYLES
+   ========================================================= */
+.manual-grid-table input,
+.manual-grid-table select {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 32px;
+    padding: 4px 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 12px;
+    background: #ffffff;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.manual-grid-table input:focus,
+.manual-grid-table select:focus {
+    outline: none;
+    border-color: #0284c7;
+    box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+}
+
+.manual-grid-table td {
+    padding: 6px 8px !important;
+    vertical-align: middle;
+}
+
+.manual-grid-table tbody td.col-mobile-header {
+    display: none;
+}
+
+.manual-grid-table tr:hover td {
+    background-color: #f8fafc;
+}
+
+/* Desktop: Sticky Header & Frozen Columns */
+@media (min-width: 769px) {
+    #btn-toggle-all-inv-rows {
+        display: none !important;
+    }
+
+    .manual-invoice-grid-wrapper {
+        max-height: calc(88vh - 260px);
+        min-height: 420px;
+        overflow: auto;
+        position: relative;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+    }
+
+    .manual-grid-table {
+        min-width: 1320px;
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12.5px;
+        display: table;
+    }
+
+    .manual-grid-table thead {
+        display: table-header-group;
+    }
+
+    .manual-grid-table tbody {
+        display: table-row-group;
+    }
+
+    .manual-grid-table tbody tr {
+        display: table-row;
+    }
+
+    .manual-grid-table tbody td {
+        display: table-cell;
+    }
+
+    .manual-grid-table tbody td.col-mobile-header {
+        display: none !important;
+    }
+
+    .manual-grid-table thead th {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: #f1f5f9;
+        box-shadow: inset 0 -1px 0 #cbd5e1;
+    }
+
+    /* Sticky Kolom Kiri: # dan Nama Produk */
+    .manual-grid-table thead th.col-num,
+    .manual-grid-table tbody td.col-num {
+        position: sticky;
+        left: 0;
+        background: #f8fafc;
+        z-index: 21;
+    }
+    .manual-grid-table tbody td.col-num {
+        background: #ffffff;
+        z-index: 10;
+    }
+
+    .manual-grid-table thead th.col-prod,
+    .manual-grid-table tbody td.col-prod {
+        position: sticky;
+        left: 36px;
+        background: #f8fafc;
+        z-index: 21;
+        box-shadow: 3px 0 6px -2px rgba(0, 0, 0, 0.08);
+    }
+    .manual-grid-table tbody td.col-prod {
+        background: #ffffff;
+        z-index: 10;
+    }
+    .manual-grid-table tr:hover td.col-num,
+    .manual-grid-table tr:hover td.col-prod {
+        background: #f8fafc;
+    }
+
+    /* Sticky Kolom Kanan: Subtotal dan Aksi Hapus */
+    .manual-grid-table thead th.col-subtotal,
+    .manual-grid-table tbody td.col-subtotal {
+        position: sticky;
+        right: 42px;
+        background: #f8fafc;
+        z-index: 21;
+        box-shadow: -3px 0 6px -2px rgba(0, 0, 0, 0.08);
+    }
+    .manual-grid-table tbody td.col-subtotal {
+        background: #ffffff;
+        z-index: 10;
+    }
+
+    .manual-grid-table thead th.col-action,
+    .manual-grid-table tbody td.col-action {
+        position: sticky;
+        right: 0;
+        background: #f8fafc;
+        z-index: 21;
+    }
+    .manual-grid-table tbody td.col-action {
+        background: #ffffff;
+        z-index: 10;
+    }
+    .manual-grid-table tr:hover td.col-subtotal,
+    .manual-grid-table tr:hover td.col-action {
+        background: #f8fafc;
+    }
+}
+
+.inv-prod-cell {
+    position: relative;
+}
+
+.inv-prod-autocomplete {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+    max-height: 220px;
+    overflow-y: auto;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    margin-top: 2px;
+}
+
+.inv-prod-opt {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inv-prod-opt:hover,
+.inv-prod-opt.active {
+    background-color: #f0f9ff;
+    color: #0369a1;
+}
+
+.inv-prod-opt-add {
+    background: #f8fafc;
+    color: #0284c7;
+    font-weight: 700;
+    border-top: 1px solid #e2e8f0;
+}
+
+.inv-prod-opt-add:hover {
+    background: #0284c7;
+    color: #ffffff;
+}
+
+.rec-banner-match {
+    background: #f0fdf4 !important;
+    border: 1px solid #bbf7d0 !important;
+    color: #166534 !important;
+}
+
+.rec-banner-mismatch {
+    background: #fef2f2 !important;
+    border: 1px solid #fecaca !important;
+    color: #991b1b !important;
+}
+
+/* =========================================================
+   PRODUCT STATUS PILLS BERGRADASI SOFT & DINAMIS
+   ========================================================= */
+.product-toolbar-panel {
+    transition: box-shadow 0.2s ease;
+}
+
+.product-status-pills {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.prod-pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #f8fafc;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    outline: none;
+    user-select: none;
+}
+
+.prod-pill-btn:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06);
+}
+
+.prod-pill-indicator {
+    width: 7.5px;
+    height: 7.5px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.prod-pill-btn:hover .prod-pill-indicator {
+    transform: scale(1.25);
+}
+
+.indicator-green { background: #10b981; }
+.indicator-amber { background: #f59e0b; }
+.indicator-sky   { background: #0284c7; }
+.indicator-slate { background: #64748b; }
+
+/* Status Aktif dengan Soft Gradient & Ring Halus */
+.prod-pill-btn.active[data-status="aktif"] {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%) !important;
+    color: #ffffff !important;
+    border-color: #059669 !important;
+    box-shadow: 0 3px 10px rgba(16, 185, 129, 0.3) !important;
+}
+.prod-pill-btn.active[data-status="aktif"] .prod-pill-indicator {
+    background: #ffffff !important;
+}
+
+.prod-pill-btn.active[data-status="belum aktif"] {
+    background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%) !important;
+    color: #ffffff !important;
+    border-color: #d97706 !important;
+    box-shadow: 0 3px 10px rgba(245, 158, 11, 0.3) !important;
+}
+.prod-pill-btn.active[data-status="belum aktif"] .prod-pill-indicator {
+    background: #ffffff !important;
+}
+
+.prod-pill-btn.active[data-status="tidak aktif"] {
+    background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%) !important;
+    color: #ffffff !important;
+    border-color: #0284c7 !important;
+    box-shadow: 0 3px 10px rgba(2, 132, 199, 0.3) !important;
+}
+.prod-pill-btn.active[data-status="tidak aktif"] .prod-pill-indicator {
+    background: #ffffff !important;
+}
+
+.prod-pill-btn.active[data-status=""] {
+    background: linear-gradient(135deg, #334155 0%, #64748b 100%) !important;
+    color: #ffffff !important;
+    border-color: #334155 !important;
+    box-shadow: 0 3px 10px rgba(71, 85, 105, 0.3) !important;
+}
+.prod-pill-btn.active[data-status=""] .prod-pill-indicator {
+    background: #ffffff !important;
+}
+
+/* ==============================================================================
+   RENOVASI VISUAL PREMIUM — HEADER & DASHBOARD KPI KASIRPRO V2
+   Nuansa Modern Glassmorphism, Micro-Interactions & Executive Health Aesthetic
+   ============================================================================== */
+
+/* 1. TOPBAR HEADER ELEGAN DENGAN FROSTED GLASS & PULSE GLOW */
+.topbar {
+    background: rgba(255, 255, 255, 0.88) !important;
+    backdrop-filter: blur(14px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(160%) !important;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.85) !important;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03) !important;
+    transition: all 0.25s ease !important;
+}
+
+.page-heading h1 {
+    font-size: 1.12rem !important;
+    font-weight: 850 !important;
+    letter-spacing: -0.02em !important;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.page-heading p {
+    font-size: 0.72rem !important;
+    font-weight: 550 !important;
+    color: #64748b !important;
+}
+
+/* Indikator Online Berkedip Halus (Pulsing Glow Dot) */
+.connection-status {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    padding: 5px 12px !important;
+    background: #f0fdf4 !important;
+    border: 1px solid #bbf7d0 !important;
+    border-radius: 999px !important;
+    font-size: 0.68rem !important;
+    font-weight: 750 !important;
+    color: #15803d !important;
+}
+
+.connection-status .status-dot {
+    width: 7px !important;
+    height: 7px !important;
+    background: #22c55e !important;
+    border-radius: 50% !important;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6) !important;
+    animation: kp-pulse-dot 2s infinite !important;
+}
+
+@keyframes kp-pulse-dot {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+    70% { transform: scale(1.15); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* Tombol Buka POS di Header */
+.topbar-pos-link {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-weight: 750 !important;
+    font-size: 0.76rem !important;
+    padding: 7px 14px !important;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25) !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.topbar-pos-link:hover {
+    transform: translateY(-1.5px) !important;
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35) !important;
+}
+
+/* Badge Profil Admin di Header */
+.admin-profile {
+    padding: 4px 10px 4px 6px !important;
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    transition: all 0.2s ease !important;
+}
+
+.admin-profile:hover {
+    background: #ffffff !important;
+    border-color: #cbd5e1 !important;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05) !important;
+}
+
+.admin-avatar {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 9px !important;
+    background: linear-gradient(135deg, #3b82f6, #1e40af) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* 2. DASHBOARD TOOLBAR (FILTER PERIODE MODERN) */
+.dashboard-toolbar {
+    background: #ffffff !important;
+    border: 1px solid rgba(226, 232, 240, 0.95) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03) !important;
+    padding: 14px 20px !important;
+    margin-bottom: 16px !important;
+}
+
+.dashboard-eyebrow {
+    color: #3b82f6 !important;
+    font-size: 0.65rem !important;
+    letter-spacing: 0.09em !important;
+    font-weight: 850 !important;
+}
+
+.dashboard-toolbar p {
+    font-size: 0.96rem !important;
+    font-weight: 850 !important;
+    color: #0f172a !important;
+}
+
+.dashboard-periods {
+    background: #f1f5f9 !important;
+    padding: 3px !important;
+    border-radius: 11px !important;
+    gap: 3px !important;
+}
+
+.dashboard-period {
+    min-height: 30px !important;
+    padding: 5px 12px !important;
+    border: none !important;
+    border-radius: 8px !important;
+    background: transparent !important;
+    color: #64748b !important;
+    font-size: 0.68rem !important;
+    font-weight: 750 !important;
+    transition: all 0.18s ease !important;
+}
+
+.dashboard-period:hover {
+    color: #1e293b !important;
+    background: rgba(255, 255, 255, 0.6) !important;
+}
+
+.dashboard-period.active {
+    background: #ffffff !important;
+    color: #2563eb !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08) !important;
+}
+
+/* 3. KARTU STATISTIK KPI KEUANGAN (PREMIUM EXECUTIVE CARDS) */
+.dashboard-grid {
+    gap: 16px !important;
+    margin-bottom: 18px !important;
+}
+
+.dashboard-card {
+    position: relative !important;
+    background: #ffffff !important;
+    border-radius: 18px !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.035) !important;
+    padding: 18px 18px !important;
+    overflow: hidden !important;
+    transition: all 0.24s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.dashboard-card::after {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 3px !important;
+    background: transparent !important;
+    transition: all 0.25s ease !important;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3.5px) !important;
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.075) !important;
+}
+
+/* Aksen Warna Tiap Kartu Keuangan */
+.dashboard-card-primary::after { background: linear-gradient(90deg, #3b82f6, #60a5fa) !important; }
+.dashboard-card-primary .dashboard-card-icon {
+    background: linear-gradient(135deg, #eff6ff, #dbeafe) !important;
+    color: #2563eb !important;
+    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.15) !important;
+}
+
+.dashboard-card-success::after { background: linear-gradient(90deg, #10b981, #34d399) !important; }
+.dashboard-card-success .dashboard-card-icon {
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5) !important;
+    color: #059669 !important;
+    box-shadow: 0 6px 14px rgba(16, 185, 129, 0.15) !important;
+}
+
+.dashboard-card-violet::after { background: linear-gradient(90deg, #8b5cf6, #a78bfa) !important; }
+.dashboard-card-violet .dashboard-card-icon {
+    background: linear-gradient(135deg, #f5f3ff, #ede9fe) !important;
+    color: #7c3aed !important;
+    box-shadow: 0 6px 14px rgba(139, 92, 246, 0.15) !important;
+}
+
+.dashboard-card-warning::after { background: linear-gradient(90deg, #f59e0b, #fbbf24) !important; }
+.dashboard-card-warning .dashboard-card-icon {
+    background: linear-gradient(135deg, #fffbeb, #fef3c7) !important;
+    color: #d97706 !important;
+    box-shadow: 0 6px 14px rgba(245, 158, 11, 0.15) !important;
+}
+
+.dashboard-card-icon {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 14px !important;
+    font-size: 1.15rem !important;
+    display: grid !important;
+    place-items: center !important;
+    flex-shrink: 0 !important;
+    transition: transform 0.25s ease !important;
+}
+
+.dashboard-card:hover .dashboard-card-icon {
+    transform: scale(1.08) !important;
+}
+
+.dashboard-card span {
+    font-size: 0.73rem !important;
+    font-weight: 750 !important;
+    color: #64748b !important;
+    letter-spacing: 0.02em !important;
+    text-transform: uppercase !important;
+}
+
+.dashboard-card strong {
+    font-size: 1.34rem !important;
+    font-weight: 850 !important;
+    color: #0f172a !important;
+    letter-spacing: -0.02em !important;
+    margin: 3px 0 2px !important;
+    display: block !important;
+}
+
+.dashboard-card small {
+    font-size: 0.62rem !important;
+    color: #94a3b8 !important;
+    line-height: 1.4 !important;
+}
+
+/* 4. KARTU OPERASIONAL & PERIKSA STATUS */
+.dashboard-section-heading h2 {
+    font-size: 0.98rem !important;
+    font-weight: 850 !important;
+    color: #0f172a !important;
+}
+
+.dashboard-section-heading p {
+    font-size: 0.68rem !important;
+    color: #64748b !important;
+}
+
+.dashboard-review {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 18px !important;
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.035) !important;
+    padding: 18px 20px !important;
+    margin-top: 18px !important;
+}
+
+.dashboard-review-item {
+    border-radius: 12px !important;
+    padding: 12px 14px !important;
+    border: 1px solid #f1f5f9 !important;
+    background: #f8fafc !important;
+    transition: all 0.2s ease !important;
+}
+
+.dashboard-review-item:hover {
+    background: #ffffff !important;
+    border-color: #e2e8f0 !important;
+    transform: translateX(3px) !important;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04) !important;
+}
+
+/* ==============================================================================
+   RENOVASI VISUAL PREMIUM — DATA TABLES & PILL BADGES KASIRPRO V2
+   Modern Table Grids with Spotlight Hover, Glass Sticky Headers & Pill Badges
+   ============================================================================== */
+
+/* 1. TABLE WRAPPER DENGAN SUDUT HALUS & SOFT ELEVATION */
+.table-wrapper {
+    border: 1px solid rgba(226, 232, 240, 0.95) !important;
+    border-radius: 16px !important;
+    background: #ffffff !important;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.035) !important;
+    overflow: auto !important;
+    transition: all 0.2s ease !important;
+}
+
+/* 2. HEADER TABEL STICKY DENGAN SENTUHAN FROSTED GLASS */
+.data-table th {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 10 !important;
+    background: rgba(248, 250, 252, 0.94) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    padding: 12px 14px !important;
+    font-size: 0.67rem !important;
+    font-weight: 850 !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+    color: #475569 !important;
+    border-bottom: 2px solid #e2e8f0 !important;
+    white-space: nowrap !important;
+}
+
+/* 3. BARIS TABEL & SPOTLIGHT ROW HOVER */
+.data-table td {
+    padding: 11px 14px !important;
+    font-size: 0.72rem !important;
+    color: #334155 !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    vertical-align: middle !important;
+    transition: background-color 0.15s ease !important;
+}
+
+.data-table tbody tr {
+    transition: all 0.16s ease !important;
+}
+
+/* Efek Spotlight Row: Lembut, menyala tanpa silau */
+.data-table tbody tr:hover {
+    background-color: #f0f7ff !important;
+    box-shadow: inset 3px 0 0 #2563eb !important;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* 4. PILL BADGE STATUS BERKELAS MEDIS MODERN */
+.badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 4px 10px !important;
+    border-radius: 999px !important;
+    font-size: 0.66rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.01em !important;
+    white-space: nowrap !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.2s ease !important;
+}
+
+.badge i {
+    font-size: 0.64rem !important;
+}
+
+/* Status: Aktif (Stok Tersedia) */
+.badge-success {
+    background: #ecfdf5 !important;
+    color: #059669 !important;
+    border: 1px solid #a7f3d0 !important;
+}
+
+/* Status: Belum Aktif (Belum Ada Stok) */
+.badge-info {
+    background: #f1f5f9 !important;
+    color: #475569 !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+/* Status: Siap Konfirmasi / Primary */
+.badge-primary {
+    background: #eff6ff !important;
+    color: #2563eb !important;
+    border: 1px solid #bfdbfe !important;
+}
+
+/* Status: Perlu Review / Perlu Harga */
+.badge-warning {
+    background: #fffbeb !important;
+    color: #d97706 !important;
+    border: 1px solid #fde68a !important;
+}
+
+/* Status: Dibatalkan / Bahaya */
+.badge-danger {
+    background: #fef2f2 !important;
+    color: #dc2626 !important;
+    border: 1px solid #fecaca !important;
+}
+
+/* 5. TOMBOL AKSI DALAM BARIS TABEL (EDIT & HAPUS) */
+.data-table .button-small {
+    min-height: 28px !important;
+    padding: 3px 9px !important;
+    border-radius: 8px !important;
+    font-size: 0.68rem !important;
+    font-weight: 750 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 5px !important;
+    transition: all 0.16s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.data-table .button-small:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 3px 8px rgba(15, 23, 42, 0.1) !important;
+}
+
+.btn-edit-price {
+    background: #ffffff !important;
+    color: #2563eb !important;
+    border: 1px solid #bfdbfe !important;
+}
+
+.btn-edit-price:hover {
+    background: #eff6ff !important;
+    border-color: #2563eb !important;
+}
+
+.btn-delete-product {
+    background: #ffffff !important;
+    color: #dc2626 !important;
+    border: 1px solid #fecaca !important;
+}
+
+.btn-delete-product:hover {
+    background: #fef2f2 !important;
+    border-color: #dc2626 !important;
+}
+
+/* 6. SEARCH INPUT & TOOLBAR TABEL */
+.preview-search input {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 10px !important;
+    padding: 8px 12px 8px 34px !important;
+    font-size: 0.72rem !important;
+    font-weight: 550 !important;
+    transition: all 0.2s ease !important;
+}
+
+.preview-search input:focus {
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12) !important;
+}
+
+/* ==============================================================================
+   RENOVASI VISUAL PREMIUM — SIDEBAR NAVIGASI MENU KASIRPRO V2
+   Modern Dark-Navy or Crisp White Executive Sidebar with Floating Pill Active
+   ============================================================================== */
+
+/* 1. STRUKTUR SIDEBAR DENGAN BORDER HALUS & SUBTLE SHADOW */
+.sidebar {
+    background: #ffffff !important;
+    border-right: 1px solid rgba(226, 232, 240, 0.8) !important;
+    box-shadow: 4px 0 24px rgba(15, 23, 42, 0.025) !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* 2. HEADER BRAND LOGO (APOTEK DOA IBU) */
+.sidebar-brand {
+    padding: 14px 18px !important;
+    border-bottom: 1px solid rgba(241, 245, 249, 0.95) !important;
+    background: linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%) !important;
+}
+
+.brand-logo {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 12px !important;
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important;
+    border: 1px solid #bfdbfe !important;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12) !important;
+    transition: transform 0.2s ease !important;
+}
+
+.sidebar-brand:hover .brand-logo {
+    transform: scale(1.05) rotate(-2deg) !important;
+}
+
+.brand-text strong {
+    font-size: 0.98rem !important;
+    font-weight: 850 !important;
+    letter-spacing: -0.01em !important;
+    background: linear-gradient(135deg, #0f2a43 0%, #2563eb 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+.brand-text span {
+    font-size: 0.68rem !important;
+    font-weight: 650 !important;
+    color: #64748b !important;
+    letter-spacing: 0.01em !important;
+}
+
+/* 3. SECTION LABEL MENU */
+.nav-label {
+    margin: 12px 12px 8px !important;
+    font-size: 0.62rem !important;
+    font-weight: 850 !important;
+    letter-spacing: 0.09em !important;
+    color: #94a3b8 !important;
+    text-transform: uppercase !important;
+}
+
+/* 4. ITEM NAVIGASI MENU MODERN (FLOATING PILL & SOFT HOVER) */
+.nav-item {
+    min-height: 42px !important;
+    margin: 3px 6px !important;
+    padding: 9px 12px !important;
+    border-radius: 12px !important;
+    font-size: 0.76rem !important;
+    font-weight: 650 !important;
+    color: #475569 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+}
+
+.nav-item > i:first-child {
+    width: 20px !important;
+    font-size: 0.92rem !important;
+    color: #64748b !important;
+    text-align: center !important;
+    transition: all 0.2s ease !important;
+}
+
+/* State Hover Menu */
+.nav-item:hover {
+    color: #1d4ed8 !important;
+    background: #f1f5f9 !important;
+    transform: translateX(3px) !important;
+}
+
+.nav-item:hover > i:first-child {
+    color: #2563eb !important;
+    transform: scale(1.12) !important;
+}
+
+/* State Aktif Menu (Pill Modern Gradient dengan Glow Halus) */
+.nav-item.active {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
+    font-weight: 800 !important;
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3) !important;
+    transform: translateX(2px) !important;
+}
+
+.nav-item.active > i:first-child {
+    color: #ffffff !important;
+}
+
+/* Aksen Khusus Link POS Cepat di Sidebar */
+#sidebar-pos-link {
+    background: #f8fafc !important;
+    border: 1px dashed #cbd5e1 !important;
+    color: #0f2a43 !important;
+}
+
+#sidebar-pos-link:hover {
+    background: #eff6ff !important;
+    border-color: #2563eb !important;
+    color: #1d4ed8 !important;
+    border-style: solid !important;
+}
+
+#sidebar-pos-link > i:first-child {
+    color: #2563eb !important;
+}
+
+/* 5. FOOTER SIDEBAR & TOMBOL KELUAR */
+.sidebar-footer {
+    padding: 12px 14px !important;
+    border-top: 1px solid rgba(241, 245, 249, 0.95) !important;
+    background: #fbfcfe !important;
+}
+
+.logout-button {
+    min-height: 42px !important;
+    border-radius: 12px !important;
+    background: #ffffff !important;
+    border: 1px solid #fee2e2 !important;
+    color: #dc2626 !important;
+    font-size: 0.76rem !important;
+    font-weight: 750 !important;
+    box-shadow: 0 2px 6px rgba(220, 38, 38, 0.05) !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.logout-button:hover {
+    background: #fef2f2 !important;
+    border-color: #fca5a5 !important;
+    color: #b91c1c !important;
+    transform: translateY(-1.5px) !important;
+    box-shadow: 0 6px 14px rgba(220, 38, 38, 0.12) !important;
+}
+
+.logout-button i {
+    font-size: 0.88rem !important;
+    transition: transform 0.2s ease !important;
+}
+
+.logout-button:hover i {
+    transform: translateX(2px) !important;
+}
+
+/* ==============================================================================
+   RESPONSIVITAS MOBILE & PWA GUARDS (TABLET, PONSEL & PWA)
+   Memastikan KPI Cards 2-kolom rapi & Data Table scrollable alami di HP/PWA
+   ============================================================================== */
+@media (max-width: 820px) {
+    .dashboard-grid-financial {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+    }
+
+    .dashboard-grid-operational {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+    }
+
+    .dashboard-card {
+        padding: 13px 12px !important;
+        border-radius: 14px !important;
+        gap: 10px !important;
+    }
+
+    .dashboard-card-icon {
+        width: 38px !important;
+        height: 38px !important;
+        border-radius: 10px !important;
+        font-size: 0.95rem !important;
+    }
+
+    .dashboard-card span {
+        font-size: 0.65rem !important;
+    }
+
+    .dashboard-card strong {
+        font-size: 1.05rem !important;
+    }
+
+    /* Kembalikan overflow tabel di HP agar tabel lebar (11 kolom) bisa digeser nyaman */
+    .table-wrapper {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        border-radius: 12px !important;
+        max-width: 100% !important;
+    }
+
+    .table-wrapper>.data-table,
+    .table-wrapper>table {
+        min-width: 720px !important; /* Mencegah kolom teks terjepit hancur */
+        table-layout: auto !important;
+    }
+
+    .data-table th,
+    .data-table td {
+        white-space: nowrap !important;
+        padding: 9px 10px !important;
+        font-size: 0.66rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-grid-financial {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
+
+

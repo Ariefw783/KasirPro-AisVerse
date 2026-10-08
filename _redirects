@@ -1,0 +1,7 @@
+# ==============================================================================
+# KONFIGURASI RUTE CLOUDFLARE PAGES - KASIRPRO V2
+# ==============================================================================
+
+# Menjaga navigasi folder POS dan Management
+/pos /pos/ 301
+/management /management/ 301

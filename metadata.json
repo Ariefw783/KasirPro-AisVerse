@@ -1,0 +1,8 @@
+{
+  "name": "KasirPro V.2",
+  "description": "Gateway aplikasi KasirPro untuk Administrator dan Petugas Kasir.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
